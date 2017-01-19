@@ -17,6 +17,7 @@ public class User {
 	private String email;
 	private String role;
 	private boolean active;
+	private boolean isOnline;
 
 	public long getUserId() {
 		return userId;
@@ -64,6 +65,14 @@ public class User {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public boolean isOnline() {
+		return isOnline;
+	}
+
+	public void setOnline(boolean isOnline) {
+		this.isOnline = isOnline;
 	}
 
 }

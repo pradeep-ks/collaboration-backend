@@ -18,6 +18,8 @@ public interface UserDao {
 	
 	List<User> list();
 	
+	List<User> listUsersExceptLoggedIn(long loggedInUserId);
+	
 	boolean isExistingUser(User u);
 	
 	boolean authenticate(String username, String password);

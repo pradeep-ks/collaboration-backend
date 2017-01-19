@@ -80,4 +80,11 @@ public class UserDaoImpl implements UserDao {
 		return false;
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<User> listUsersExceptLoggedIn(long loggedInUserId) {
+		String hql = "from User where userId<>" + loggedInUserId;
+		List<User> users = sessionFactory.getCurrentSession().createQuery(hql).getResultList();
+		return users;
+	}
+
 }

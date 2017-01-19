@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.NoResultException;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,7 +25,16 @@ public class FriendDaoImpl implements FriendDao {
 	UserDao userDao;
 	
 	public void add(Friend friend) {
-		sessionFactory.getCurrentSession().saveOrUpdate(friend);
+		Session session = sessionFactory.getCurrentSession();
+		
+		Friend friend2 = new Friend();
+		friend2.setUser(friend.getFriend());
+		friend2.setFriend(friend.getUser());
+		friend2.setStatus("NEW");
+		friend2.setOnline(false);
+		
+		session.saveOrUpdate(friend);
+		session.saveOrUpdate(friend2);
 	}
 
 	public void update(Friend friend) {
@@ -44,14 +54,14 @@ public class FriendDaoImpl implements FriendDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Friend> listMyFriends(long userId) {
-		String hql = "from Friend where userId=" + userId;
+		String hql = "from Friend where friendId=" + userId;
 		List<Friend> friends = sessionFactory.getCurrentSession().createQuery(hql).getResultList();
 		return friends;
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Friend> listNewFriendRequests(long userId) {
-		String hql = "from Friend where userId=" + userId + " where status='NEW'";
+		String hql = "from Friend where friendId=" + userId + " and status='NEW'";
 		List<Friend> friends = sessionFactory.getCurrentSession().createQuery(hql).getResultList();
 		return friends;
 	}
