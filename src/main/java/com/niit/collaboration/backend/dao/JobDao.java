@@ -15,6 +15,8 @@ public interface JobDao {
 	
 	List<Job> listJobs();
 	
+	List<AppliedJob> listAppliedJobs(long userId);
+	
 	void saveAppliedJob(AppliedJob appliedJob);
 	
 }

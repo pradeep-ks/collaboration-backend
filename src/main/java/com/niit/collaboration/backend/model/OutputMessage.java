@@ -7,6 +7,7 @@ public class OutputMessage extends Message {
 	private Date time;
 
 	public OutputMessage() {
+		super();
 	}
 
 	public OutputMessage(Message message, Date time) {

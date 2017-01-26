@@ -10,7 +10,7 @@ public interface EventDao {
 	
 	void update(Event event);
 	
-	void remove(Event event);
+	//void remove(Event event);
 	
 	Event getEventById(long eventId);
 	
