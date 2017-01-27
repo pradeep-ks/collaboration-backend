@@ -44,4 +44,8 @@ public class BlogDaoImpl implements BlogDao {
 		List<Blog> blogs = sessionFactory.getCurrentSession().createQuery("from Blog").getResultList();
 		return blogs;
 	}
+
+	public void remove(Blog blog) {
+		sessionFactory.getCurrentSession().delete(blog);
+	}
 }

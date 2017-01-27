@@ -46,7 +46,7 @@ public class JobDaoImpl implements JobDao {
 
 	@SuppressWarnings("unchecked")
 	public List<AppliedJob> listAppliedJobs(long userId) {
-		String hql = "from AppliedJob where userId=" + userId + " and status='APPLIED'";
+		String hql = "from AppliedJob where userId=" + userId;
 		List<AppliedJob> jobsApplied = sessionFactory.getCurrentSession().createQuery(hql).getResultList();
 		return jobsApplied;
 	}

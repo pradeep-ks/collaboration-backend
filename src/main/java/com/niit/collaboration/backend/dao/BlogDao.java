@@ -10,6 +10,8 @@ public interface BlogDao {
 	
 	void update(Blog blog);
 	
+	void remove(Blog blog);
+	
 	Blog getBlogById(long blogId);
 	
 	List<Blog> list();
