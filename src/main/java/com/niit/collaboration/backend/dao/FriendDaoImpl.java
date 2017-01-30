@@ -54,7 +54,7 @@ public class FriendDaoImpl implements FriendDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Friend> listMyFriends(long userId) {
-		String hql = "from Friend where friendId=" + userId;
+		String hql = "from Friend where friendId=" + userId + " and status='ACCEPTED'";
 		List<Friend> friends = sessionFactory.getCurrentSession().createQuery(hql).getResultList();
 		return friends;
 	}
