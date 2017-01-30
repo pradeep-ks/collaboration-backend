@@ -87,4 +87,14 @@ public class UserDaoImpl implements UserDao {
 		return users;
 	}
 
+	public void setOnline(long userId) {
+		String hql = "update User set isOnline=true where userId=" + userId;
+		sessionFactory.getCurrentSession().createQuery(hql).executeUpdate();
+	}
+
+	public void setOffline(long userId) {
+		String hql = "update User set isOnline=false where userId=" + userId;
+		sessionFactory.getCurrentSession().createQuery(hql).executeUpdate();
+	}
+
 }

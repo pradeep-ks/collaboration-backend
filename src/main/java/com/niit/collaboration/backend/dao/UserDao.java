@@ -24,4 +24,8 @@ public interface UserDao {
 	
 	boolean authenticate(String username, String password);
 	
+	void setOnline(long userId);
+	
+	void setOffline(long userId);
+	
 }

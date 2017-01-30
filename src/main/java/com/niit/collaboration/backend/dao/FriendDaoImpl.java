@@ -67,13 +67,13 @@ public class FriendDaoImpl implements FriendDao {
 	}
 
 	public void setOnline(long userId) {
-		// TODO Auto-generated method stub
-		
+		String hql = "update Friend set isOnline=true where friendId=" + userId;
+		sessionFactory.getCurrentSession().createQuery(hql).executeUpdate();
 	}
 
 	public void setOffline(long userId) {
-		// TODO Auto-generated method stub
-		
+		String hql = "update Friend set isOnline=false where friendId=" + userId;
+		sessionFactory.getCurrentSession().createQuery(hql).executeUpdate();
 	}
 
 }
