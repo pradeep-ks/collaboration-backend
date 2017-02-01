@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.collaboration.backend.model.Blog;
+import com.niit.collaboration.backend.model.Comment;
 
 @Repository("blogDao")
 @EnableTransactionManagement
@@ -39,13 +40,30 @@ public class BlogDaoImpl implements BlogDao {
 		return blog;
 	}
 
+	public void remove(Blog blog) {
+		sessionFactory.getCurrentSession().delete(blog);
+	}
+
 	@SuppressWarnings("unchecked")
-	public List<Blog> list() {
-		List<Blog> blogs = sessionFactory.getCurrentSession().createQuery("from Blog").getResultList();
+	public List<Blog> listNewBlogs() {
+		List<Blog> blogs = sessionFactory.getCurrentSession().createQuery("from Blog where status='NEW'").getResultList();
 		return blogs;
 	}
 
-	public void remove(Blog blog) {
-		sessionFactory.getCurrentSession().delete(blog);
+	@SuppressWarnings("unchecked")
+	public List<Blog> listApprovedBlogs() {
+		List<Blog> blogs = sessionFactory.getCurrentSession().createQuery("from Blog where status='APPROVED'").getResultList();
+		return blogs;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Comment> getCommentsByBlogId(long blogId) {
+		String hql = "from Comment where blogId=" + blogId;
+		List<Comment> comments = sessionFactory.getCurrentSession().createQuery(hql).getResultList();
+		return comments;
+	}
+
+	public void makeComment(Comment comment) {
+		sessionFactory.getCurrentSession().saveOrUpdate(comment);
 	}
 }
