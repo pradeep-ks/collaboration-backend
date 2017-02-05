@@ -18,7 +18,7 @@ public class Event {
 	private String description;
 	private Date eventDate;
 	private String venue;
-	private String status;
+	private String status;		// Contains either NEW --> New Events or DONE --> Past Events.
 
 	public long getEventId() {
 		return eventId;

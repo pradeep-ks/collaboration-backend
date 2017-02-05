@@ -21,7 +21,7 @@ public class Friend {
 	@ManyToOne
 	@JoinColumn(name = "friendId")
 	private User friend;
-	private String status;
+	private String status;	// Contains NEW --> New request, ACCEPTED --> Request accepted or REJECTED --> Request rejected.
 	private boolean isOnline;
 
 	public long getId() {
